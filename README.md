@@ -11,7 +11,7 @@
 </div>
 <div align="left">
 
-<img src="assets/phoneScreenshots/1.png" width="25%" /><img src="assets/phoneScreenshots/2.png" width="25%" /><img src="assetsphoneScreenshots/3.png" width="25%" /><img src="assets/phoneScreenshots/4.png" width="25%" />
+<img src="assets/phoneScreenshots/1.png" width="25%" /><img src="assets/phoneScreenshots/2.png" width="25%" /><img src="assets/phoneScreenshots/3.png" width="25%" /><img src="assets/phoneScreenshots/4.png" width="25%" />
 
 * Browse and install apps from F-Droid repositories
 * Automatic app updates in the background
