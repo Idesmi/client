@@ -129,6 +129,16 @@ body {
     top: 0;
     z-index: 100;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: 
+        transform var(--duration-medium2) var(--motion-emphasized-decelerate),
+        opacity var(--duration-medium1) var(--motion-standard);
+}
+
+.update-banner.visible {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .banner-link {

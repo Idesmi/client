@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Update Banner -->
-    <aside class="update-banner" id="update-banner">
+    <!-- Update Banner (hidden by default, shown if release within last month) -->
+    <aside class="update-banner" id="update-banner" hidden>
         <span class="banner-text">
-            🎉 Droid-ify <span id="latest-version">v0.6.6</span> is now available 
+            🎉 Droid-ify <span id="latest-version"></span> is now available 
             <a href="https://github.com/Iamlooker/Droid-ify/releases/latest" id="release-link" class="banner-link">Get it here →</a>
         </span>
     </aside>
@@ -236,18 +236,26 @@
                 mainContent.classList.add('hidden');
             }
 
-            // Fetch latest release version from GitHub
+            // Fetch latest release and show banner only if released within last month
             fetch('https://api.github.com/repos/Iamlooker/Droid-ify/releases/latest')
                 .then(function(res) { return res.json(); })
                 .then(function(data) {
-                    if (data.tag_name) {
+                    if (!data.published_at) return;
+                    
+                    var releaseDate = new Date(data.published_at);
+                    var oneMonthAgo = new Date();
+                    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+                    
+                    if (releaseDate > oneMonthAgo) {
+                        var banner = document.getElementById('update-banner');
                         document.getElementById('latest-version').textContent = data.tag_name;
-                    }
-                    if (data.html_url) {
-                        document.getElementById('release-link').href = data.html_url;
+                        if (data.html_url) {
+                            document.getElementById('release-link').href = data.html_url;
+                        }
+                        banner.removeAttribute('hidden');
                     }
                 })
-                .catch(function() { /* Keep fallback version */ });
+                .catch(function() { /* Banner stays hidden */ });
         })();
     </script>
 </body>
